@@ -1,0 +1,53 @@
+{% extends 'layout.html' %} 
+{% block title %}
+<style>
+    small{
+        color:red;
+    }
+    #message{
+        color:red;
+    }
+    #response{
+        color:green;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        
+        document.querySelector('#is_issued').addEventListener('input', function(){
+            if(document.querySelector('#is_issued').value === 'False'){
+                document.querySelector('small').innerText = 'Warning: If is issued is False, issued to person will be set to None'
+                
+            }
+        })
+    })
+</script>
+{% endblock %}
+{% block body %} 
+<section>
+    <h2>Welcome to our library database management software</h2>
+    <p>You can actively keep track of issued books and customers with this route.</p>
+    <p>Note: You cannot leave the Book Name and Book Author fields empty. You may update all other fields except for Book Name.</p>
+</section>
+
+<h3 id = "message">{{message}}</h3>
+<h3 id = "response">{{response}}</h3>
+<form action = "{% url 'put_data_partial' %}" method = 'POST'>
+    <div class="form-group"></div>
+      <!-- <label for="exampleInputEmail1">Book Name</label> -->
+      <input type="text" class="form-control" id="book_name" aria-describedby="emailHelp" placeholder="Enter book name" name = 'book_name'><br>
+      <input type="text" class="form-control" id="book_author" aria-describedby="emailHelp" placeholder="Enter book author" name = 'book_author'><br>
+      <select name="is_issued" id="is_issued">
+        <option value=""disabled selected>--Select--</option>
+        <option value="True">True</option>
+        <option value="False">False</option>
+      </select><br><br>
+      <input type="text" class="form-control" id="issued_to" aria-describedby="emailHelp" placeholder="Enter the issued person's name" name = 'issued_to'>
+      <small></small>
+      
+    </div><br>
+    
+    <input type="submit" class="btn btn-primary" value="Submit">
+
+  </form>
+{% endblock %}

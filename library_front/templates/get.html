@@ -1,0 +1,29 @@
+{% extends 'layout.html' %} 
+{% block title %} 
+
+{% endblock %}
+{% block body %} 
+
+<h1>Retrieve Books</h1>
+<form action = "{% url 'get' %}" method = 'POST'>
+    <div class="form-group"></div>
+      <label for="exampleInputEmail1">Book Name</label>
+      <input type="text" class="form-control" id="book_name" aria-describedby="emailHelp" placeholder="Enter book name" name = 'book'>
+      
+    </div><br>
+    <input type="submit" class="btn btn-primary" value="Submit">
+
+  </form>
+  <h3>Response: 
+    <div id = "response_single">
+    <ul>
+        <li>{{response.book_name}}</li>
+        <li>{{response.book_author}}</li>
+        <li>{{response.is_issued}}</li>
+        <li>{{response.issued_to}}</li>
+    </ul>
+    </div>
+    
+  </h3>
+  <br><br><br><br>
+{% endblock %}
